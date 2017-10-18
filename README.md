@@ -2,9 +2,9 @@
 Behavior analysis for ADHDDM LCT paradigm
 
 
-1.Data preprocessing and merging: ADHDDMDP.R
-2.Calculate Acceptance rate (AR) and Reaction time (RT) : AR&RT.R
-3.Calculate AR and RT for both group and plotting figure: Mean&Ttest_final.R
+1. Data preprocessing and merging: ADHDDMDP.R
+2. Calculate Acceptance rate (AR) and Reaction time (RT) : AR&RT.R
+3. Calculate AR and RT for both group and plotting figure: Mean&Ttest_final.R
 4.Caculate Decision threshold (DT) by logistic regression: logistic_regression.R
 5.Plotting DT and square DT distribution; AR, and RT figure by group and plotting: Beh_DTAR_0821.R
 6.Conduct Anova of AR and RT by group, probability, magnitude: ANOVA.R
