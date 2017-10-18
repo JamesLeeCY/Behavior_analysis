@@ -70,8 +70,10 @@ DTn <- ggplot(DTAC, aes(Group, DT, colour=Group)) +
    theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black"), legend.position="none")
 # change the colour of violin plot
-# DTN <- DTn + scale_fill_manual(values=c("#E69F00", "#3366CC")) + scale_colour_manual(values=c("#E69F00", "#3366CC"))
- ggsave('Probability density distribution of ADHD and HC decision threshold (DT).pdf', plot = DTn, 
+DTN <- DTn + scale_fill_manual(values=c('red','blue')) + scale_colour_manual(values=c('red','blue'))
+ ggsave('Probability density distribution of ADHD and HC decision threshold (DT).png', plot = DTn, 
+        width = 100, height = 130, units = 'mm')
+ ggsave('Probability density distribution of ADHD and HC decision threshold (DT) (R&B).png', plot = DTN, 
         width = 100, height = 130, units = 'mm')
  
  
@@ -84,8 +86,10 @@ DTn <- ggplot(DTAC, aes(Group, DT, colour=Group)) +
    scale_fill_discrete(name = "Group") +
    theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
          panel.background = element_blank(), axis.line = element_line(colour = "black"), legend.position="none")
- 
+ DTSQ <- DTsq + scale_fill_manual(values=c('red','blue')) + scale_colour_manual(values=c('red','blue'))
  ggsave('Probability density distribution of ADHD and HC adjusted decision threshold (adjusted DT).png', plot = DTsq, 
+        width = 100, height = 130, units = 'mm')
+ ggsave('Probability density distribution of ADHD and HC adjusted decision threshold (adjusted DT) (R&B).png', plot = DTSQ, 
         width = 100, height = 130, units = 'mm')
  
  
@@ -98,26 +102,26 @@ MSE$Pb <- factor(MSE$Pb, levels = c("LL", "ML", "MM", "MH", "HH"))
  p1 <- ggplot(data = subset(MSE, Mg == "H"), aes(x = Pb, y = MAR, group = Gp, colour = Gp))+
    geom_errorbar(aes(ymin=MAR-SAR, ymax=MAR+SAR), width=0, size =1) +
    geom_line(size = 1) +
-   # scale_color_manual(values=c('red','blue')) +
-   # geom_point(size = 2)+
+   scale_color_manual(values=c('red','blue')) +
    ylim(0, 1)+
-   labs(x = 'Probability', y = 'p(Accept)') +
+   labs(x = '', y = '') +
    ggtitle("High magnitude") +    
    theme(plot.margin=unit(c(1,1,1.5,0.1),"cm"), legend.position="none") +
    theme(plot.title = element_text(hjust = 0.5)) +
-   annotate("text", x = 'MM', y = 0.75, label = "*", size = 5) +
-   annotate("text", x = 'ML', y = 0.20, label = "*", size = 5) +
-   annotate("text", x = 'LL', y = 0.15, label = "*", size = 5) +
+   annotate("text", x = 'MM', y = 0.75, label = "*", size = 10) +
+   annotate("text", x = 'ML', y = 0.20, label = "*", size = 10) +
+   annotate("text", x = 'LL', y = 0.15, label = "*", size = 10) +
    theme(text = element_text(size = 10)) +
    geom_hline(yintercept = 0.5, linetype="dotted") +
-   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+   theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
          panel.background = element_blank(), axis.line = element_line(colour = "black")
    )
  p2 <- ggplot(data = subset(MSE, Mg == "L"), aes(x = Pb, y = MAR, group = Gp, colour = Gp))+
    geom_errorbar(aes(ymin=MAR-SAR, ymax=MAR+SAR), width=0, size =1) +
    geom_line(size = 1) +
+   scale_color_manual(values=c('red','blue')) +
    ylim(0, 1)+
-   xlab("Probability")+
+   xlab("")+
    ggtitle("Low magnitude") +  
    theme(plot.margin=unit(c(1,1,1.5,1.5),"cm"))+
    theme(axis.title.y=element_blank())+
@@ -125,9 +129,9 @@ MSE$Pb <- factor(MSE$Pb, levels = c("LL", "ML", "MM", "MH", "HH"))
    theme(plot.title = element_text(hjust = 0.5)) + 
    theme(text = element_text(size = 10)) +
    geom_hline(yintercept = 0.5, linetype="dotted") +
-   theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+   theme(text = element_text(size = 15),panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
          panel.background = element_blank(), axis.line = element_line(colour = "black")) 
-pdf('AR_0825.pdf',10,5)
+pdf('AR_1016_RB_2.pdf',10,5)
 AR <- multiplot(p1, p2, cols = 2)
 dev.off()
 
@@ -136,35 +140,38 @@ dev.off()
 p1 <- ggplot(data = subset(MSE, Mg == "H"), aes(x = Pb, y = MRT, group = Gp, colour = Gp))+
   geom_errorbar(aes(ymin=MRT-SRT, ymax=MRT+SRT), width=0, size =1) +
   geom_line(size = 1) +
+  scale_color_manual(values=c('red','blue')) +
   ylim(1000, 1900)+
-  labs(x = 'Probability', y = 'Reaction time (ms)') +
+  labs(x = '', y = '') +
   ggtitle("High magnitude") +    
   theme(plot.margin=unit(c(1,1,1.5,0.1),"cm"), legend.position="none") +
   theme(plot.title = element_text(hjust = 0.5)) +
-  annotate("text", x = 'ML', y = 1750, label = "*", size = 5) +
-  annotate("text", x = 'LL', y = 1640, label = "*", size = 5) +
+  annotate("text", x = 'ML', y = 1750, label = "*", size = 10) +
+  annotate("text", x = 'LL', y = 1640, label = "*", size = 10) +
   theme(text = element_text(size = 10)) +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")
   )
 p2 <- ggplot(data = subset(MSE, Mg == "L"), aes(x = Pb, y = MRT, group = Gp, colour = Gp))+
   geom_errorbar(aes(ymin=MRT-SRT, ymax=MRT+SRT), width=0, size =1) +
   geom_line(size = 1) +
+  scale_color_manual(values=c('red','blue')) +
   ylim(1000, 1900)+
-  xlab("Probability")+
+  xlab("")+
   ggtitle("Low magnitude") +  
   theme(plot.margin=unit(c(1,1,1.5,1.5),"cm"))+
   theme(axis.title.y=element_blank())+
   theme(legend.position="none")+
   theme(plot.title = element_text(hjust = 0.5)) + 
-  annotate("text", x = 'HH', y = 1440, label = "*", size = 5) +
-  annotate("text", x = 'ML', y = 1750, label = "*", size = 5) +
+  annotate("text", x = 'HH', y = 1440, label = "*", size = 10) +
+  annotate("text", x = 'ML', y = 1750, label = "*", size = 10) +
   theme(text = element_text(size = 10)) +
-  theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
+  theme(text = element_text(size = 15), panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
         panel.background = element_blank(), axis.line = element_line(colour = "black")) 
-pdf('RT_0825.pdf',10,5)
+pdf('RT_1016_RB_2.pdf',10,5)
 RT <- multiplot(p1, p2, cols = 2)
 dev.off()
 
 
+ 
  
